@@ -1,7 +1,6 @@
 <?php
 include 'simple_html_dom.php';
 $html = new simple_html_dom();
-
 $html = file_get_html('https://monotaro.id/');
 $ret = $html->find('li[class=has-children]');
 
@@ -10,10 +9,8 @@ foreach($ret as $v){
 	foreach($a as $k){
 		$span = $k->find("span");
 		foreach($span as $x){
-			//$kategori[] = $x;
-			echo $x."<br><hr>";
+			echo $x."<br><hr>";//kategori
 		}
-
 	}
 
 	$category_title =  $v->find('ul[class=cd-secondary-dropdown is-hidden]');
@@ -23,14 +20,10 @@ foreach($ret as $v){
 			$col_s4 = $tl->find("div[class=col s4]");
 			foreach($col_s4 as $tl2){
 				$tle = $tl2->find("div[class=category-title]");
-				
-				//ini adalah title
 				foreach($tle as $tl3){
 					$tl_a = $tl3->find("a");
-
 					foreach($tl_a as $title){
-						echo $title->innertext."<hr><br>";
-						//$subkategori[] = $title;
+						echo $title->innertext."<hr><br>";//subkategori
 						$htmls = file_get_html($title->href);
 						$stl_div = $htmls->find("div[class=filter-options-content]");
 						foreach($stl_div as $stl_3){
@@ -38,24 +31,18 @@ foreach($ret as $v){
 							foreach($stl_ol as $stl_4){
 								$stl_li = $stl_4->find("a");
 								foreach($stl_li as $subtitle){
-									//$childkategori[] = $subtitle;
-									echo $subtitle->innertext."<br>";
+									echo $subtitle->innertext."<br>";//child kategori
 								}
 							}
-							break;
-							//agar brand tidak ngikut
+							break;//agar brand tidak ngikut
 						}	
 					}
 				}
-				//ini adalah title
 				echo "<br>";
 			}
 		}
 	}
-
 	echo "<br>";
-	//break;
-	//exit;
 }
 
 
