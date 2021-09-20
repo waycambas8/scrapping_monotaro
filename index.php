@@ -54,7 +54,7 @@ foreach($ret as $v){
 	}
 
 	echo "<br>";
-	break;
+	//break;
 	//exit;
 }
 
